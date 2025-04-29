@@ -39,9 +39,54 @@
             border-left: 5px solid #ff6b6b;
             font-size: 18px;
         }
+
+        /* Lock Screen Styles */
+        .lock-screen {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            z-index: 9999;
+            color: white;
+        }
+        .lock-screen input {
+            padding: 10px;
+            font-size: 18px;
+            border: none;
+            border-radius: 8px;
+            margin-top: 10px;
+            width: 250px;
+            text-align: center;
+        }
+        .lock-screen button {
+            margin-top: 15px;
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        .lock-screen button:hover {
+            background-color: #388e3c;
+        }
     </style>
 </head>
+
 <body>
+
+<!-- Lock screen -->
+<div class="lock-screen" id="lockScreen">
+  <h2>🔒 Enter Passkey to Continue</h2>
+  <input type="password" id="passwordInput" placeholder="Enter Passkey">
+  <button onclick="checkPassword()">Unlock</button>
+  <p id="errorMsg" style="color: red; margin-top: 10px;"></p>
+</div>
 
     <h1>📚 Summer Holiday Homework (Class 6 – Computer)</h1>
 
@@ -89,6 +134,23 @@
         - Draw the table neatly on A4 paper.<br>
         - If you cannot record a video, explain orally.
     </div>
+
+<script>
+function checkPassword() {
+  const correctPassword = "imagine"; // Password set kiya hai "imagine"
+  const enteredPassword = document.getElementById("passwordInput").value;
+  const errorMsg = document.getElementById("errorMsg");
+
+  if (enteredPassword === correctPassword) {
+    document.getElementById("lockScreen").style.display = "none";
+  } else {
+    errorMsg.textContent = "❌ Incorrect Passkey! Reload the page again.";
+    setTimeout(() => {
+      location.reload();
+    }, 2000);
+  }
+}
+</script>
 
 </body>
 </html>
